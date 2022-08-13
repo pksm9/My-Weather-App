@@ -36,9 +36,9 @@ public class WeatherListActivity extends AppCompatActivity {
     TextView txtTemp;
     ImageView iconWeather;
     ListView dailyList;
-    String city = "Colombo";
+    /*String city = "Colombo";
     String units = "metric";
-    String icon;
+    String icon;*/
 
 
     @Override
@@ -109,12 +109,11 @@ public class WeatherListActivity extends AppCompatActivity {
                     JSONArray weather = day.getJSONArray("weather");
                     JSONObject weather_obj = weather.getJSONObject(0);
 
-                    String temp = main.getString("temp").toString();
-                    String description = weather_obj.getString("main").toString();
-                    icon = weather_obj.getString("icon");
-                    String date = main.getString("dt").toString();
+                    String temp = main.getString("temp");
+                    String description = weather_obj.getString("description");
+                    String icon = weather_obj.getString("icon");
 
-
+                    String IMAGE_URL = "https://openweathermap.org/img/w/"+ icon +".png";
 
                     weatherList.add(new Weather(temp, description));
 
@@ -133,8 +132,8 @@ public class WeatherListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                String BASE_URL ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+"bf5e6047a46ad2469dced210d31f972e"+"&units="+units;
-                String IMAGE_URL = "https://openweathermap.org/img/w/"+ icon +".png";
+                final String BASE_URL ="https://api.openweathermap.org/data/2.5/forecast?q=Colombo&appid=bf5e6047a46ad2469dced210d31f972e&units=metric";
+                String IMAGE_URL = "";
                 URL url = new URL(BASE_URL);
 
                 urlConnection = (HttpURLConnection) url.openConnection();

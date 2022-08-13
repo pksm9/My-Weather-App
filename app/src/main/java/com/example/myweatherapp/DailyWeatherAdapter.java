@@ -18,11 +18,10 @@ public class DailyWeatherAdapter extends ArrayAdapter<Weather> {
     private List<Weather> weatherList;
     private Context context;
 
-    public DailyWeatherAdapter(@NonNull Context context, @NonNull List<Weather> weatherList) {
+    public DailyWeatherAdapter(@NonNull Context context,@NonNull List<Weather> weatherList) {
         super(context, 0, weatherList);
         this.context = context;
         this.weatherList = weatherList;
-
     }
 
     @NonNull
@@ -42,5 +41,4 @@ public class DailyWeatherAdapter extends ArrayAdapter<Weather> {
 
         return convertView;
     }
-
 }
