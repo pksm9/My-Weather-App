@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -110,18 +112,28 @@ public class WeatherListActivity extends AppCompatActivity {
                     JSONObject weather_obj = weather.getJSONObject(0);
 
                     String temp = main.getString("temp");
-                    String description = weather_obj.getString("description");
+                    String description = weather_obj.getString("main");
                     String icon = weather_obj.getString("icon");
+                    String imageURL= "https://openweathermap.org/img/w/"+ icon +".png";
 
-                    String IMAGE_URL = "https://openweathermap.org/img/w/"+ icon +".png";
-
-                    weatherList.add(new Weather(temp, description));
+                    weatherList.add(new Weather(temp, description, imageURL));
 
                     i = i+8;
                 }
 
                 DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(WeatherListActivity.this,weatherList);
                 dailyList.setAdapter(dailyWeatherAdapter);
+
+                dailyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String str = dailyList.getAdapter().getItem(position).toString();
+                        Intent detailedWeather = new Intent(getApplicationContext(), DetailedWeatherActivity.class);
+                        detailedWeather.putExtra("details", str);
+                        startActivity(detailedWeather);
+
+                    }
+                });
 
             } catch (JSONException e) {
                 e.printStackTrace();

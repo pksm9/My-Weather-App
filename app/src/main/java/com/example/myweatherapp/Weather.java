@@ -6,6 +6,11 @@ public class Weather {
     public String temp;
     public String description;
     private String icon;
+    public String imageUrl;
+
+    public String getImageUrl() {return imageUrl;}
+
+    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
 
     public long getDay() {
         return day;
@@ -39,9 +44,10 @@ public class Weather {
         this.icon = icon;
     }
 
-    public Weather(String temp, String icon) {
+    public Weather(String temp,String description, String imageUrl) {
         this.temp = temp;
-        this.icon = icon;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public Weather(long day, String temp, String description, String icon) {

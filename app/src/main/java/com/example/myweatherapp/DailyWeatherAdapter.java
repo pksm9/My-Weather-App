@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 public class DailyWeatherAdapter extends ArrayAdapter<Weather> {
@@ -38,6 +42,14 @@ public class DailyWeatherAdapter extends ArrayAdapter<Weather> {
 
         txtTemp.setText(weather.getTemp());
         txtDescription.setText(weather.getDescription());
+
+        try {
+            URL imageUrl = new URL(weather.getImageUrl());
+            Glide.with(context).load(imageUrl).into(iconWeather);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
         return convertView;
     }
