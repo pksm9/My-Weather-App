@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class WeatherSettings extends AppCompatActivity {
 
-    TextView inputCity, labelCity, inputUnits;
+    TextView txtCity, labelCity, txtUnits, labelUnits;
     String city;
 
     @Override
@@ -23,20 +23,38 @@ public class WeatherSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_settings);
 
-        inputCity = findViewById(R.id.txtCity);
-        labelCity = findViewById(R.id.inputCity);
+        labelCity = findViewById(R.id.labelCity);
+        txtCity = findViewById(R.id.txtCity);
 
-        inputCity.setOnClickListener(new View.OnClickListener() {
+        labelCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cityDialogBox();
             }
         });
 
-        labelCity.setOnClickListener(new View.OnClickListener() {
+        txtCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cityDialogBox();
+            }
+        });
+
+
+        labelUnits = findViewById(R.id.labelUnits);
+        txtUnits = findViewById(R.id.txtUnits);
+
+        labelUnits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unitsDialogBox();
+            }
+        });
+
+        txtUnits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unitsDialogBox();
             }
         });
     }
@@ -61,5 +79,10 @@ public class WeatherSettings extends AppCompatActivity {
         });
 
         alertCity.show();
+    }
+
+    private void unitsDialogBox() {
+
+
     }
 }

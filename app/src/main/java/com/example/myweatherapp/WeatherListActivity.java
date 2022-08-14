@@ -38,9 +38,9 @@ public class WeatherListActivity extends AppCompatActivity {
     TextView txtTemp;
     ImageView iconWeather;
     ListView dailyList;
-    /*String city = "Colombo";
+    String city = "Colombo";
     String units = "metric";
-    String icon;*/
+    String icon;
 
 
     @Override
@@ -127,10 +127,12 @@ public class WeatherListActivity extends AppCompatActivity {
                 dailyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String str = dailyList.getAdapter().getItem(position).toString();
-                        Intent detailedWeather = new Intent(getApplicationContext(), DetailedWeatherActivity.class);
-                        detailedWeather.putExtra("details", str);
-                        startActivity(detailedWeather);
+                        Weather detailedWeather = (Weather)dailyList.getAdapter().getItem(position);
+                        Intent detailedWeatherIntent = new Intent(getApplicationContext(), DetailedWeatherActivity.class);
+                        //detailedWeather.putExtra("date", detailedWeather.getDate);
+                        detailedWeather.putExtra("temp", detailedWeather.getTemp());
+
+                        startActivity(detailedWeatherIntent);
 
                     }
                 });
@@ -144,7 +146,7 @@ public class WeatherListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                final String BASE_URL ="https://api.openweathermap.org/data/2.5/forecast?q=Colombo&appid=bf5e6047a46ad2469dced210d31f972e&units=metric";
+                final String BASE_URL ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+"bf5e6047a46ad2469dced210d31f972e"+"&units=metric";
                 String IMAGE_URL = "";
                 URL url = new URL(BASE_URL);
 

@@ -56,4 +56,7 @@ public class Weather {
         this.description = description;
         this.icon = icon;
     }
+
+    public void putExtra(String temp, String temp1) {
+    }
 }

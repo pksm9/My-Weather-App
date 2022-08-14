@@ -15,7 +15,7 @@
         android:paddingLeft="20dp">
 
         <TextView
-            android:id="@+id/inputCity"
+            android:id="@+id/labelCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="City"
@@ -39,7 +39,7 @@
         android:paddingLeft="20dp">
 
         <TextView
-            android:id="@+id/inputUnits"
+            android:id="@+id/labelUnits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Temperature Units"
@@ -47,7 +47,7 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/txtTemperatureUnits"
+            android:id="@+id/txtUnits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select temperature units"
