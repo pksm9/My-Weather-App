@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:textSize="15sp"
-            android:text="London" />
+            android:text="Select your city" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +50,7 @@
             android:id="@+id/txtTemperatureUnits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Celsius"
+            android:text="Select temperature units"
             android:textSize="16sp"
             android:layout_marginTop="2dp"/>
     </LinearLayout>

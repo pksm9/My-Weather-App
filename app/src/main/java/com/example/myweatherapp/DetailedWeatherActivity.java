@@ -34,8 +34,13 @@ public class DetailedWeatherActivity extends AppCompatActivity {
             JSONObject object = new JSONObject(details);
 
             String temp = object.getString("temp");
+            String description = object.getString("description");
+            String humidity = object.getString("humidity");
 
             detailTemp.setText(temp);
+            detailDescription.setText(description);
+            detailHumidity.setText(humidity);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

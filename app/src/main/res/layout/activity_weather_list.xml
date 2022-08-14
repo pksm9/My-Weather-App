@@ -9,10 +9,11 @@
         android:layout_height="100dp">
 
         <ImageView
+            android:id="@+id/iconWeather"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
-            android:id="@+id/iconWeather"/>
+            android:padding="14dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -22,34 +23,35 @@
 
         <TextView
             android:layout_width="175dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="12dp"
             android:id="@+id/txtDay"
             android:textColor="@color/teal_700"
-            android:textSize="30dp"
+            android:textSize="26dp"
+            android:textStyle="bold"
             android:text="Sunday"/>
         <TextView
             android:layout_width="175dp"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:paddingLeft="12dp"
             android:id="@+id/txtDescription"
-            android:textColor="@color/teal_200"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:text="Rain"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="100dp">
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="130dp"
             android:layout_height="45dp"
             android:layout_marginTop="28dp"
             android:id="@+id/txtTemp"
-            android:textSize="30dp"
-            android:textAlignment="center"
+            android:textSize="24dp"
             android:text="28 °"/>
     </LinearLayout>
 
