@@ -28,23 +28,7 @@ public class DetailedWeatherActivity extends AppCompatActivity {
         detailDescription = findViewById(R.id.detailDescription);
         detailHumidity = findViewById(R.id.detailHumidity);
 
-        String details = getIntent().getExtras().getString("details");
-
-        try {
-            JSONObject object = new JSONObject(details);
-
-            String temp = object.getString("temp");
-            String description = object.getString("description");
-            String humidity = object.getString("humidity");
-
-            detailTemp.setText(temp);
-            detailDescription.setText(description);
-            detailHumidity.setText(humidity);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        String temp = getIntent().getExtras().getString("temp");
+        detailTemp.setText(temp);
     }
 }

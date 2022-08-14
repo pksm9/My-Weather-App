@@ -33,15 +33,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherListActivity extends AppCompatActivity {
-
     TextView txtDescription;
     TextView txtTemp;
     ImageView iconWeather;
     ListView dailyList;
     String city = "Colombo";
     String units = "metric";
-    String icon;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +81,6 @@ public class WeatherListActivity extends AppCompatActivity {
         return true;
     }
 
-
-
     public class FetchData extends AsyncTask<String, Void, String> {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -98,7 +93,6 @@ public class WeatherListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-
             try {
                 List<Weather> weatherList = new ArrayList<>();
 
@@ -106,18 +100,8 @@ public class WeatherListActivity extends AppCompatActivity {
                 JSONArray list = weatherData.getJSONArray("list");
 
                 for (int i = 0; i < 40;) {
-                    JSONObject day = list.getJSONObject(i);
-                    JSONObject main = day.getJSONObject("main");
-                    JSONArray weather = day.getJSONArray("weather");
-                    JSONObject weather_obj = weather.getJSONObject(0);
-
-                    String temp = main.getString("temp");
-                    String description = weather_obj.getString("main");
-                    String icon = weather_obj.getString("icon");
-                    String imageURL= "https://openweathermap.org/img/w/"+ icon +".png";
-
-                    weatherList.add(new Weather(temp, description, imageURL));
-
+                    JSONObject forecast = list.getJSONObject(i);
+                    weatherList.add(new Weather(forecast));
                     i = i+8;
                 }
 
@@ -127,20 +111,18 @@ public class WeatherListActivity extends AppCompatActivity {
                 dailyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Weather detailedWeather = (Weather)dailyList.getAdapter().getItem(position);
+                        Weather detailedWeather = (Weather) dailyList.getAdapter().getItem(position);
                         Intent detailedWeatherIntent = new Intent(getApplicationContext(), DetailedWeatherActivity.class);
-                        //detailedWeather.putExtra("date", detailedWeather.getDate);
-                        detailedWeather.putExtra("temp", detailedWeather.getTemp());
+
+                        detailedWeatherIntent.putExtra("temp", detailedWeather.getTemp());
 
                         startActivity(detailedWeatherIntent);
-
                     }
                 });
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
 
         @Override

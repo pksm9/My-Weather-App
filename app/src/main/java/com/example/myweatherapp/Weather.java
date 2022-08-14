@@ -1,62 +1,59 @@
 package com.example.myweatherapp;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Weather {
+    private long dt;
+    private JSONObject main;
+    private JSONObject weather;
 
-    private long day;
-    public String temp;
-    public String description;
-    private String icon;
-    public String imageUrl;
-
-    public String getImageUrl() {return imageUrl;}
-
-    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
-
-    public long getDay() {
-        return day;
+    public Weather(JSONObject forecast) throws JSONException {
+        this.main = forecast.getJSONObject("main");
+        this.weather = forecast.getJSONArray("weather").getJSONObject(0);
+        this.dt = forecast.getLong("dt");
     }
 
-    public void setDay(long day) {
-        this.day = day;
+    public String getImageUrl() {
+        try {
+            return "https://openweathermap.org/img/w/"+ weather.getString("icon") +".png";
+        } catch (JSONException e) {
+            Log.d("Hi", e.getMessage());
+            return null;
+        }
+    }
+
+    public long getDay() {
+        //TODO: Must implement date conversion
+        return this.dt;
     }
 
     public String getTemp() {
-        return temp;
+        try {
+            return main.getString("temp");
+        } catch (JSONException e) {
+            Log.d("Hi", e.getMessage());
+            return null;
+        }
     }
 
-    public void setTemp(String temp) {
-        this.temp = temp;
+    public String getHumidity() {
+        try {
+            return main.getString("humidity");
+        } catch (JSONException e) {
+            Log.d("Hi", e.getMessage());
+            return null;
+        }
     }
 
     public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public Weather(String temp,String description, String imageUrl) {
-        this.temp = temp;
-        this.description = description;
-        this.imageUrl = imageUrl;
-    }
-
-    public Weather(long day, String temp, String description, String icon) {
-        this.day = day;
-        this.temp = temp;
-        this.description = description;
-        this.icon = icon;
-    }
-
-    public void putExtra(String temp, String temp1) {
+        try {
+            return weather.getString("description");
+        } catch (JSONException e) {
+            Log.d("Hi", e.getMessage());
+            return null;
+        }
     }
 }
