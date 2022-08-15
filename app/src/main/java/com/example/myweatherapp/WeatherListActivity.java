@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -36,8 +38,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class WeatherListActivity extends AppCompatActivity {
-    TextView txtDescription;
-    TextView txtTemp;
+    TextView txtDescription, txtTemp, txtDay;
     ImageView iconWeather;
     ListView dailyList;
 
@@ -52,6 +53,7 @@ public class WeatherListActivity extends AppCompatActivity {
         txtTemp = findViewById(R.id.txtTemp);
         txtDescription = findViewById(R.id.txtDescription);
         iconWeather = findViewById(R.id.iconWeather);
+        txtDay = findViewById(R.id.txtDay);
         dailyList = findViewById(R.id.dailyList);
     }
 
@@ -116,6 +118,9 @@ public class WeatherListActivity extends AppCompatActivity {
                         Intent detailedWeatherIntent = new Intent(getApplicationContext(), DetailedWeatherActivity.class);
 
                         detailedWeatherIntent.putExtra("temp", detailedWeather.getTemp());
+                        detailedWeatherIntent.putExtra("description", detailedWeather.getDetails());
+                        detailedWeatherIntent.putExtra("icon", detailedWeather.getImageUrl());
+                        detailedWeatherIntent.putExtra("humidity", detailedWeather.getHumidity());
                         startActivity(detailedWeatherIntent);
                     }
                 });

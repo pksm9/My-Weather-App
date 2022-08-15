@@ -42,6 +42,7 @@ public class DailyWeatherAdapter extends ArrayAdapter<Weather> {
 
         txtTemp.setText(weather.getTemp());
         txtDescription.setText(weather.getDescription());
+        txtDay.setText(weather.getDay());
 
         try {
             URL imageUrl = new URL(weather.getImageUrl());

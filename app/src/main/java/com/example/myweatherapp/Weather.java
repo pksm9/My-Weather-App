@@ -5,6 +5,9 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Weather {
     private long dt;
     private JSONObject main;
@@ -25,16 +28,19 @@ public class Weather {
         }
     }
 
-    public long getDay() {
-        //TODO: Must implement date conversion
-        return this.dt;
+    public String getDay() {
+        Date date = new Date(dt*1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE");
+        String day = simpleDateFormat.format(date);
+
+        return day;
     }
 
     public String getTemp() {
         try {
             return main.getString("temp");
         } catch (JSONException e) {
-            Log.d("Hi", e.getMessage());
+            Log.d("Error", e.getMessage());
             return null;
         }
     }
@@ -43,16 +49,25 @@ public class Weather {
         try {
             return main.getString("humidity");
         } catch (JSONException e) {
-            Log.d("Hi", e.getMessage());
+            Log.d("Error", e.getMessage());
             return null;
         }
     }
 
     public String getDescription() {
         try {
-            return weather.getString("main");
+            return weather.getString("description");
         } catch (JSONException e) {
-            Log.d("Hi", e.getMessage());
+            Log.d("Error", e.getMessage());
+            return null;
+        }
+    }
+
+    public String getDetails() {
+        try {
+            return weather.getString("description");
+        } catch (JSONException e) {
+            Log.d("Error", e.getMessage());
             return null;
         }
     }

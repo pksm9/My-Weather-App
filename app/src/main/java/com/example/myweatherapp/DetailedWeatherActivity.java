@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class DetailedWeatherActivity extends AppCompatActivity {
 
@@ -30,5 +35,25 @@ public class DetailedWeatherActivity extends AppCompatActivity {
 
         String temp = getIntent().getExtras().getString("temp");
         detailTemp.setText(temp);
+
+        String description = getIntent().getExtras().getString("description");
+        detailDescription.setText(description);
+
+        String humidity = getIntent().getExtras().getString("humidity");
+        detailHumidity.setText("Humidity: "+humidity+"%");
+
+        String city = getIntent().getExtras().getString("humidity");
+        String country = getIntent().getExtras().getString("humidity");
+        detailHumidity.setText(city+","+country);
+
+        String icon = getIntent().getExtras().getString("icon");
+        try {
+            URL imageUrl = new URL(icon);
+            Glide.with(this).load(imageUrl).into(detailIcon);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+
+        }
     }
 }
