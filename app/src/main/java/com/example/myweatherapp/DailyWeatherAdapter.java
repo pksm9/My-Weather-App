@@ -1,6 +1,8 @@
 package com.example.myweatherapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +42,18 @@ public class DailyWeatherAdapter extends ArrayAdapter<Weather> {
 
         Weather weather = weatherList.get(position);
 
-        txtTemp.setText(weather.getTemp());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        String units = sharedPreferences.getString("change_units", "metric");
+
+        String temp = "";
+        if (units.equals("metric")) {
+            temp = weather.getTemp() + " °C";
+        }
+        else if (units.equals("imperial")) {
+            temp = weather.getTemp() + " °F";
+        }
+
+        txtTemp.setText(temp);
         txtDescription.setText(weather.getDescription());
         txtDay.setText(weather.getDay());
 

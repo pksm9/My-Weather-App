@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/detailDate"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="03/03/2033"
@@ -15,41 +15,41 @@
         android:textAlignment="center"/>
     <TextView
         android:id="@+id/detailLocation"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="12dp"
         android:text="Colombo,LK"
-        android:textSize="44sp"
+        android:textSize="50sp"
         android:textAlignment="center"/>
     <ImageView
         android:id="@+id/detailIcon"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginTop="5dp" />
     <TextView
         android:id="@+id/detailTemp"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:text="30 °C"
-        android:textSize="65sp"
+        android:textSize="68sp"
         android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/detailDescription"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="FEW ClOUDS"
+        android:text="FEW CLOUDS"
+        android:textAllCaps="true"
         android:textSize="30sp"
         android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/detailHumidity"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
+        android:layout_margin="3dp"
         android:text="Humidity : 70%"
         android:textSize="24sp"
         android:textAlignment="center"/>

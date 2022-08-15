@@ -4,7 +4,8 @@
     <EditTextPreference
         android:title="City"
         android:summary="Enter your city"
-        android:key="search_city"/>
+        android:key="search_city"
+        android:inputType="textCapWords"/>
 
     <ListPreference
         android:title="Temperature units"

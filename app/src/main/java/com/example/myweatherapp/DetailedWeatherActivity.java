@@ -2,7 +2,9 @@ package com.example.myweatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,7 +35,19 @@ public class DetailedWeatherActivity extends AppCompatActivity {
         detailDescription = findViewById(R.id.detailDescription);
         detailHumidity = findViewById(R.id.detailHumidity);
 
-        String temp = getIntent().getExtras().getString("temp");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String units = sharedPreferences.getString("change_units", "metric");
+
+        String temp = "";
+        if (units.equals("metric")) {
+            String tempValue = getIntent().getExtras().getString("temp");
+            temp = tempValue + " °C";
+        }
+        else if (units.equals("imperial")) {
+            String tempValue = getIntent().getExtras().getString("temp");
+            temp = tempValue + " °F";
+        }
+
         detailTemp.setText(temp);
 
         String description = getIntent().getExtras().getString("description");
@@ -42,9 +56,12 @@ public class DetailedWeatherActivity extends AppCompatActivity {
         String humidity = getIntent().getExtras().getString("humidity");
         detailHumidity.setText("Humidity: "+humidity+"%");
 
-        String city = getIntent().getExtras().getString("humidity");
-        String country = getIntent().getExtras().getString("humidity");
-        detailHumidity.setText(city+","+country);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String city = sharedPreferences.getString("search_city", "London");
+        detailLocation.setText(city);
+
+        String date = getIntent().getExtras().getString("date");
+        detailDate.setText(date);
 
         String icon = getIntent().getExtras().getString("icon");
         try {

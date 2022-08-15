@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class WeatherListActivity extends AppCompatActivity {
-    TextView txtDescription, txtTemp, txtDay;
+    TextView txtDescription, txtTemp, txtDay, txtCity;
     ImageView iconWeather;
     ListView dailyList;
 
@@ -55,6 +55,19 @@ public class WeatherListActivity extends AppCompatActivity {
         iconWeather = findViewById(R.id.iconWeather);
         txtDay = findViewById(R.id.txtDay);
         dailyList = findViewById(R.id.dailyList);
+        txtCity = findViewById(R.id.txtCity);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String city = sharedPreferences.getString("search_city", "London");
+
+        txtCity.setText("City: "+city);
+
+        new FetchData().execute();
     }
 
     @Override
@@ -121,6 +134,7 @@ public class WeatherListActivity extends AppCompatActivity {
                         detailedWeatherIntent.putExtra("description", detailedWeather.getDetails());
                         detailedWeatherIntent.putExtra("icon", detailedWeather.getImageUrl());
                         detailedWeatherIntent.putExtra("humidity", detailedWeather.getHumidity());
+                        detailedWeatherIntent.putExtra("date", detailedWeather.getDate());
                         startActivity(detailedWeatherIntent);
                     }
                 });

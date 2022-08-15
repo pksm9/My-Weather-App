@@ -36,11 +36,19 @@ public class Weather {
         return day;
     }
 
+    public String getDate() {
+        Date dateValue = new Date(dt*1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d/MMM/yyyy");
+        String date = simpleDateFormat.format(dateValue);
+
+        return date;
+    }
+
     public String getTemp() {
         try {
             return main.getString("temp");
         } catch (JSONException e) {
-            Log.d("Error", e.getMessage());
+            Log.d("Hi", e.getMessage());
             return null;
         }
     }
@@ -49,16 +57,16 @@ public class Weather {
         try {
             return main.getString("humidity");
         } catch (JSONException e) {
-            Log.d("Error", e.getMessage());
+            Log.d("Hi", e.getMessage());
             return null;
         }
     }
 
     public String getDescription() {
         try {
-            return weather.getString("description");
+            return weather.getString("main");
         } catch (JSONException e) {
-            Log.d("Error", e.getMessage());
+            Log.d("Hi", e.getMessage());
             return null;
         }
     }
@@ -67,7 +75,7 @@ public class Weather {
         try {
             return weather.getString("description");
         } catch (JSONException e) {
-            Log.d("Error", e.getMessage());
+            Log.d("Hi", e.getMessage());
             return null;
         }
     }

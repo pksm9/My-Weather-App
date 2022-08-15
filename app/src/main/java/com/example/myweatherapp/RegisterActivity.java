@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirm_password = confirmPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(add_user_name)) {
-                    Toast.makeText(getApplicationContext(), "Add user name", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Add email", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (TextUtils.isEmpty(add_password)) {
