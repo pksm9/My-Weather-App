@@ -50,7 +50,7 @@ public class Weather {
 
     public String getDescription() {
         try {
-            return weather.getString("description");
+            return weather.getString("main");
         } catch (JSONException e) {
             Log.d("Hi", e.getMessage());
             return null;

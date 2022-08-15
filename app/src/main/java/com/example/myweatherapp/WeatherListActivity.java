@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,14 +33,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class WeatherListActivity extends AppCompatActivity {
     TextView txtDescription;
     TextView txtTemp;
     ImageView iconWeather;
     ListView dailyList;
-    String city = "Colombo";
-    String units = "metric";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,6 @@ public class WeatherListActivity extends AppCompatActivity {
                         Intent detailedWeatherIntent = new Intent(getApplicationContext(), DetailedWeatherActivity.class);
 
                         detailedWeatherIntent.putExtra("temp", detailedWeather.getTemp());
-
                         startActivity(detailedWeatherIntent);
                     }
                 });
@@ -128,8 +128,12 @@ public class WeatherListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                final String BASE_URL ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+"bf5e6047a46ad2469dced210d31f972e"+"&units=metric";
-                String IMAGE_URL = "";
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String city = sharedPreferences.getString("search_city", "London");
+                String units = sharedPreferences.getString("change_units", "Celsius");
+
+                final String BASE_URL ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+"bf5e6047a46ad2469dced210d31f972e"+"&units="+units;
                 URL url = new URL(BASE_URL);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
