@@ -22,23 +22,23 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:paddingLeft="12dp"
             android:id="@+id/txtDay"
             android:textColor="@color/purple_700"
-            android:textSize="26dp"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:text="Sunday"/>
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:paddingLeft="12dp"
             android:id="@+id/txtDescription"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:text="Rain"/>
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:layout_marginTop="28dp"
             android:text="28 °"
             android:textAlignment="textEnd"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
 </LinearLayout>
